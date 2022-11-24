@@ -19,23 +19,35 @@
             <div class="containerLista">
 
                 <div class="navProfilo d-flex justify-content-between">
-                    <div class="p-1">
+                    <div class="profilo p-1">
                         <img src="img/avatar_io.jpg" alt="" style="border-radius: 50%; aspect-ratio: auto; width: 50px;">
-                        sofia
+                        <span>Sofia</span>
                     </div>
 
-                    <div class="p-md-1">
+                    <div class="barraIcone p-md-1">
                         <i class="fa-solid fa-circle-notch" style="color: gray;"></i>
                         <i class="fa-solid fa-message" style="color: gray;"></i>
                         <i class="fa-solid fa-ellipsis-vertical" style="color: gray;"></i>
                     </div>
                 </div>
 
-                <div class="notifiche"></div>
+                <div class="notifiche d-flex">
+
+                    <div class="bgBell d-flex">
+                        <i class="fa-solid fa-bell-slash" id="notificaIcon"></i>
+                    </div>
+
+                    <div class="infoNotifiche">
+                        <h2>Ricevi notifiche di nuovi messaggi</h2>
+                    </div>
+
+                </div>
+
                 <div class="barraRicerca d-flex">
                     <button class="btn" id="cerca"><i class="fa-solid fa-magnifying-glass" style="color: lightgray;"></i></button>
                     <input class="form-control" type="text" placeholder="Cerca o inizia una nuova chat">
                 </div>
+
             </div>
             <div class="sezioneMessaggi d-flex flex-column justify-content-between">
                 <div class="navContatto">
