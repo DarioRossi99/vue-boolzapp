@@ -53,12 +53,12 @@
                         
                         <div class="containerContattiWapp overflow-auto flex-grow-1 list-group list-group-flush d-flex flex-column">
 
-                            <div class="list-group-item d-flex justify-content-between">
+                            <div class="list-group-item d-flex justify-content-between" @click="selezionaUtenti = contatti" v-for="(contatti, i) in listaUtenti" :key="i + contatti.name">
 
                                 <div class="posizioneContatti d-flex justify-content-between ps-2">
-                                    <img src="/img/avatar_1.jpg" alt="" style="border-radius: 50%; aspect-ratio: auto; width: 50px;">
+                                    <img :src="`img/avatar${contatti.avatar}.jpg`" alt="" style="border-radius: 50%; aspect-ratio: auto; width: 50px;">
                                     <div class="d-flex flex-column">
-                                        <strong>Michele</strong>
+                                        <strong>{{contatti.name}}</strong>
                                         <span><small>Ultimo messagio inviato</small></span>
                                     </div>
                                 </div>
@@ -74,19 +74,27 @@
                         <div class="sezioneMessaggi d-flex flex-column justify-content-between">
                             <div class="navContatto d-flex justify-content-between p-1">
 
-                                <div class="posizioneContattiChat d-flex justify-content-between ps-2">
-                                    <img src="/img/avatar_1.jpg" alt="" style="border-radius: 50%; aspect-ratio: auto; width: 50px;">
+                                <!-- <div class="posizioneContattiChat d-flex justify-content-between ps-2" v-for="(contatti, i) in utenti" :key="i + contatti.name">
+                                    <img :src="`img/avatar${contatti.avatar}.jpg`" alt="" style="border-radius: 50%; aspect-ratio: auto; width: 50px;">
                                     <div class="d-flex flex-column">
-                                        <strong>Michele</strong>
+                                        <strong>{{contatti.name}}</strong>
                                         <span><small>Ultimo accesso oggi alle 12:00</small></span>
                                     </div>                   
                                     
-                                </div>
+                                </div> -->
 
                                 <div class="barraIcone p-md-1 d-flex align-content-center" style="width: 100px;">
-                                    <i class="fa-solid fa-circle-notch" style="color: gray;"></i>
-                                    <i class="fa-solid fa-message" style="color: gray;"></i>
+                                    <i class="fa-solid fa-magnifying-glass" style="color: gray;"></i>
+                                    <i class="fa-solid fa-paperclip" style="color: gray;"></i>
                                     <i class="fa-solid fa-ellipsis-vertical" style="color: gray;"></i>
+                                </div>
+
+                            </div>
+
+                            <div class="messaggi d-flex flex-column p-3" style="height: 100%;">
+
+                                <div class="boxMess" :class="{'mio-mess' : messageObj.status === 'sent'}" v-for="messageObj in selezionaUtenti.messages">
+                                    {{messageObj.message}}
                                 </div>
 
                             </div>
@@ -104,7 +112,8 @@
 
         </div>
 
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./js/main.js"></script>
+
+    <script src="/js/main.js" type="module"></script>
+    <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
 </body>
-</html>
+</html> 

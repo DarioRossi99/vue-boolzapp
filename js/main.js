@@ -1,15 +1,16 @@
-import utenti from `./utenti`
+import utentiInportati from './utenti.js';
 
-const {createApp} = Veu;
+const {createApp} = Vue;
 
 const app = createApp({
     data () {
         return{
-            utenti
+            listaUtenti: utentiInportati,
+            selezionaUtenti: null,
         }
     },
     methods:{},
-    mouted () {
-
+    beforeMount () {
+        this.selezionaUtenti = this.listaUtenti[0]
     }
 }).mount("#app")
