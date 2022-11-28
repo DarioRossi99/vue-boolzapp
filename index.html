@@ -41,19 +41,19 @@
 
                             <div class="infoNotifiche d-flex flex-column ps-2">
                                 <span><strong><small>Ricevi notifiche di nuovi messaggi</small></strong></span>
-                                <small><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style="color:black;">Attiva notifiche descktop</a></small>
+                                <small><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" style="color:black;">Attiva notifiche descktop</a></small>
                             </div>
 
                         </div>
 
                         <div class="barraRicerca d-flex">
                             <button class="btn" id="cerca"><i class="fa-solid fa-magnifying-glass" style="color: lightgray;"></i></button>
-                            <input class="form-control" type="text" placeholder="Cerca o inizia una nuova chat">
+                            <input class="form-control" type="text" placeholder="Cerca o inizia una nuova chat" v-model="cercaChat">
                         </div>
                         
                         <div class="containerContattiWapp overflow-auto flex-grow-1 list-group list-group-flush d-flex flex-column">
 
-                            <div class="list-group-item d-flex justify-content-between" @click="selezionaUtenti = contatti" v-for="(contatti, i) in listaUtenti" :key="i + contatti.name">
+                            <div class="list-group-item d-flex justify-content-between" @click="utenteSelezionato = contatti" v-for="(contatti, i) in listaUtenti" :key="i + contatti.name">
 
                                 <div class="posizioneContatti d-flex justify-content-between ps-2">
                                     <img :src="`img/avatar${contatti.avatar}.jpg`" alt="" style="border-radius: 50%; aspect-ratio: auto; width: 50px;">
@@ -74,14 +74,14 @@
                         <div class="sezioneMessaggi d-flex flex-column justify-content-between">
                             <div class="navContatto d-flex justify-content-between p-1">
 
-                                <!-- <div class="posizioneContattiChat d-flex justify-content-between ps-2" v-for="(contatti, i) in utenti" :key="i + contatti.name">
-                                    <img :src="`img/avatar${contatti.avatar}.jpg`" alt="" style="border-radius: 50%; aspect-ratio: auto; width: 50px;">
+                                <div class="posizioneContattiChat d-flex justify-content-between ps-2">
+                                    <img :src="`img/avatar${utenteSelezionato.avatar}.jpg`" alt="" style="border-radius: 50%; aspect-ratio: auto; width: 50px;">
                                     <div class="d-flex flex-column">
-                                        <strong>{{contatti.name}}</strong>
+                                        <strong>{{utenteSelezionato.name}}</strong>
                                         <span><small>Ultimo accesso oggi alle 12:00</small></span>
                                     </div>                   
                                     
-                                </div> -->
+                                </div>
 
                                 <div class="barraIcone p-md-1 d-flex align-content-center" style="width: 100px;">
                                     <i class="fa-solid fa-magnifying-glass" style="color: gray;"></i>
@@ -91,9 +91,9 @@
 
                             </div>
 
-                            <div class="messaggi d-flex flex-column p-3" style="height: 100%;">
+                            <div class="messaggi d-flex flex-column p-3 overflow-auto flex-grow-1" style="height: 100%;">
 
-                                <div class="boxMess" :class="{'mio-mess' : messageObj.status === 'sent'}" v-for="messageObj in selezionaUtenti.messages">
+                                <div class="boxMess" :class="{'mio-mess' : messageObj.status === 'sent'}" v-for="messageObj in utenteSelezionato.messages">
                                     {{messageObj.message}}
                                 </div>
 
@@ -101,7 +101,9 @@
 
                             <div class="navChat p-2 d-flex justify-content-center align-items-center">
                                 <i class="fa-regular fa-face-smile p-1" style="color: gray;"></i>
-                                <input class="form-control" type="text" placeholder="Scrivi un messagio">
+                                <input class="form-control" type="text" placeholder="Scrivi un messagio"
+                                v-model="newText" 
+                                @keyup.enter="invioMessaggio">
                                 <i class="fa-solid fa-microphone p-1" style="color: gray;"></i>
                             </div>
                         </div>
