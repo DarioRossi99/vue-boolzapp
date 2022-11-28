@@ -20,12 +20,6 @@ const app = createApp({
                 status: 'received'
             })
         },
-
-        getFilteredListaUtenti(){
-            return this.listaUtenti.filter(utenteSelezionato =>{
-                return utenteSelezionato.name.toLowerCase().includes(this.cercaChat.toLowerCase())
-            })
-        },
     
         
         invioMessaggio () {
@@ -41,6 +35,18 @@ const app = createApp({
             this.newText = "";
         }
     },
+
+    computed:{
+        getFilteredListaUtenti(){
+            console.log(utenteSelezionato.name)
+            return this.listaUtenti.filter(utenteSelezionato =>{
+                return utenteSelezionato.name.toLowerCase().includes(this.cercaChat.toLowerCase());
+            });
+        },
+    },
+
+    
+
     beforeMount () {
         this.utenteSelezionato = this.listaUtenti[0]
     },
