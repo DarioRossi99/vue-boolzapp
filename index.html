@@ -53,7 +53,7 @@
                         
                         <div class="containerContattiWapp overflow-auto flex-grow-1 list-group list-group-flush d-flex flex-column">
 
-                            <div class="list-group-item d-flex justify-content-between" @click="utenteSelezionato = contatti" v-for="(contatti, i) in listaUtenti" :key="i + contatti.name">
+                            <div class="list-group-item d-flex justify-content-between" @click="utenteSelezionato = contatti" v-for="(contatti, i) in getFilteredListaUtenti()" :key="i + contatti.name">
 
                                 <div class="posizioneContatti d-flex justify-content-between ps-2">
                                     <img :src="`img/avatar${contatti.avatar}.jpg`" alt="" style="border-radius: 50%; aspect-ratio: auto; width: 50px;">

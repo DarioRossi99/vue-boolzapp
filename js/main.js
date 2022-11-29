@@ -33,19 +33,16 @@ const app = createApp({
             setTimeout(this.risposta, 2000);
 
             this.newText = "";
-        }
-    },
+        },
 
-    computed:{
         getFilteredListaUtenti(){
-            console.log(utenteSelezionato.name)
+            console.log(this.utenteSelezionato.name)
             return this.listaUtenti.filter(utenteSelezionato =>{
                 return utenteSelezionato.name.toLowerCase().includes(this.cercaChat.toLowerCase());
             });
         },
-    },
 
-    
+    },
 
     beforeMount () {
         this.utenteSelezionato = this.listaUtenti[0]
